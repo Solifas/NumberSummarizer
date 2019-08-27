@@ -17,10 +17,10 @@ public class Main implements NumberRangeSummarizer {
 
     @Override
     public Collection<Integer> collect(String input) {
-        //Splitting the numbers
+        //Seperate the numbers with ","
         String[] arrayOfString = input.split(",");
         int[] integers = new int[arrayOfString.length];
-
+//
         for (int i = 0; i<arrayOfString.length; i++)
         {
             integers[i] = Integer.parseInt(arrayOfString[i]);
