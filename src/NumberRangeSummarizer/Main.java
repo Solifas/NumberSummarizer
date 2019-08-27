@@ -1,6 +1,7 @@
 package NumberRangeSummarizer;
 
 import javax.swing.plaf.synth.SynthLookAndFeel;
+import javax.swing.table.TableRowSorter;
 import java.util.*;
 import java.util.Collections;
 
@@ -54,7 +55,7 @@ public class Main implements NumberRangeSummarizer {
         List<Integer> anomalies = new ArrayList<>();
         List<Integer> minimums = new ArrayList<>();
 
-
+     try {
 
         for(int i = 0; i<collectedInts.length;i++) {
 
@@ -93,12 +94,18 @@ public class Main implements NumberRangeSummarizer {
             }
         }
 
+     }
+     catch (ArrayIndexOutOfBoundsException e){
+        System.out.println("The your  index is more than arrayList provided" + collectedInts.length);
+     }
+
         String[] range= new String [maximums.size()];
 
         for(int i = 0;i<maximums.size();i++){
 
             range[i] = minimums.get(i) + "-" + maximums.get(i);
         }
+        System.out.println("The list in asscending order: "+list);
 
         String summarizedCollectn = anomalies + Arrays.toString(range);
 
@@ -110,10 +117,10 @@ public class Main implements NumberRangeSummarizer {
 
     public static void main(String[] args) {
         // write your code here
-        Main x = new Main();
+        Main mainMethods = new Main();
 
         String nums = "1,8,9,12,17,21,25,5,6,7,22,23,24";
-        System.out.print(x.summarizeCollection(x.collect(nums)));
+        System.out.print(mainMethods.summarizeCollection(mainMethods.collect(nums)));
 
     }
 }
