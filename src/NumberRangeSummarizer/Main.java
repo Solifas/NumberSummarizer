@@ -59,7 +59,7 @@ public class Main implements NumberRangeSummarizer {
         for(int i = 0; i<collectedInts.length;i++) {
 
             // "2,3,4,15,7,8,9,10,22"
-            if ((i + 1 < collectedInts.length) && ((collectedInts[i] + 1 == collectedInts[i + 1]) || collectedInts[i - 1] == collectedInts[i] - 1)) {
+            if ((i - 1 > 0) && ( i + 1 < collectedInts.length) && ((collectedInts[i] + 1 == collectedInts[i + 1]) || collectedInts[i - 1] == collectedInts[i] - 1)) {
                 if (collectedInts[i] + 1 == collectedInts[i + 1]) {
                     list.add(collectedInts[i]);
 
@@ -74,11 +74,18 @@ public class Main implements NumberRangeSummarizer {
                 maximums.add(collectedInts[i]);
             }
 
-            if ((i - 1 > 0) && (i + 1 < collectedInts.length) && (collectedInts[i] > collectedInts[i - 1] + 1)  && (collectedInts[i]+1 != collectedInts[i+1])) {
-                anomalies.add(collectedInts[i]);
+            if ((i == 0) && (collectedInts[0] < collectedInts[i + 1] + 1) ){
+                anomalies.add(collectedInts[0]);
             }
 
-            if ((i - 1 > 0) && (i + 1 < collectedInts.length) && (collectedInts[i] > collectedInts[i - 1] + 1)  && (collectedInts[i] != collectedInts[i-1]+1) && collectedInts[i]+1 == collectedInts[i+1]) {
+            else if ((i - 1 > 0) && (i + 1 < collectedInts.length) && (collectedInts[i] > collectedInts[i - 1] + 1)  && (collectedInts[i]+1 != collectedInts[i+1])) {
+                anomalies.add(collectedInts[i]);
+            }
+            else if(i == collectedInts.length-1  && (collectedInts[i] > collectedInts[i - 1] + 1))
+                anomalies.add(collectedInts[i]);
+
+
+            if ((i-1>-1)&&(i + 1 < collectedInts.length) && (collectedInts[i] > collectedInts[i - 1] + 1)  && (collectedInts[i] != collectedInts[i-1]+1) && collectedInts[i]+1 == collectedInts[i+1]) {
                 minimums.add(collectedInts[i]);
             }
             else if ((i==0) && (collectedInts[0]+1 == collectedInts[1])){
@@ -105,7 +112,7 @@ public class Main implements NumberRangeSummarizer {
         // write your code here
         Main x = new Main();
 
-        String nums = "22,2,3,4,15,7,8,9,10,32,33,34,35,56,57,58,59,60,61,28";
+        String nums = "1,8,9,12,17,21,25,5,6,7,22,23,24";
         System.out.print(x.summarizeCollection(x.collect(nums)));
 
     }
