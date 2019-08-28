@@ -12,13 +12,11 @@ class MainTest {
     @Test
     public void testCollectedNumbers(){
         Main test = new Main();
-        String numbers = "99,100,101,102,103,104,107,108,109,110,115,188,189,192,20";
+        String numbers = "1,3,4,6,7,103,104,107,108,109,110,115,188,189,192,20";
         Collection<Integer> result =test.collect(numbers);
-        assertEquals(Arrays.asList(20,99,100,101,102,103,104,107,108,109,110,115,188,189,192),result);
+        assertEquals(Arrays.asList(1, 3, 4, 6, 7, 20, 103, 104, 107, 108, 109, 110, 115, 188, 189, 192),result);
 
-        String summarizedstr = test.summarizeCollection(result);
-        System.out.println(summarizedstr);
-        assertEquals("20, 99 - 104, 107 - 110, 115, 188 - 189, 192",summarizedstr);
+
 
     }
 
@@ -26,10 +24,11 @@ class MainTest {
     public void testSummarizedCollection(){
 
         Main test = new Main();
-        Collection<Integer> listCollected =  Arrays.asList(20,99,100,101,102,103,104,107,108,109,110,115,188,189,192);
+        Collection<Integer> listCollected =  Arrays.asList(1,3,4,6,7,103,104,107,108,109,110,115,188,189,192,20);
         String summarizedstr = test.summarizeCollection(listCollected);
+        System.out.println(summarizedstr);
 
-        assertEquals("20, 99 - 104, 107 - 110, 115, 188 - 189, 192 ",summarizedstr);
+        assertEquals("1, 3 - 4, 6 - 7, 103 - 104, 107 - 110, 115, 188 - 189, 192, 20",summarizedstr);
     }
 
 }
