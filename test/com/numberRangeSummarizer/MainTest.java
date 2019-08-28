@@ -1,4 +1,4 @@
-package NumberRangeSummarizer;
+package com.numberRangeSummarizer;
 
 import org.junit.jupiter.api.Test;
 
@@ -26,10 +26,10 @@ class MainTest {
     public void testSummarizedCollection(){
 
         Main test = new Main();
-        Collection<Integer> listCollected =  Arrays.asList(20,99,100,101,102,103,104,107,108,109,110,115,188,189,192);
+        Collection<Integer> listCollected =  Arrays.asList(20,21,22,23,24,25);
         String summarizedstr = test.summarizeCollection(listCollected);
 
-        assertEquals("20, 115, 192, 99-104, 107-110, 188-189, ",summarizedstr);
+        assertEquals("20-25 ",summarizedstr);
     }
 
 }
