@@ -1,9 +1,11 @@
-package NumberRangeSummarizer;
+package com.numberRangeSummarizer;
 
-import javax.swing.plaf.synth.SynthLookAndFeel;
-import javax.swing.table.TableRowSorter;
-import java.util.*;
-import java.util.Collections;
+
+import java.util.List;
+import java.util.Collection;
+import java.util.Arrays;
+import java.util.ArrayList;
+
 
 /* grouping the numbers into a range when they are sequential.
  *
@@ -16,17 +18,15 @@ public class Main implements NumberRangeSummarizer {
 
 
 
-    @Override
+
     public Collection<Integer> collect(String input) {
-        //Seperate the numbers with ","
+        //Separate the numbers with ","
         String[] arrayOfString = input.split(",");
         int[] integers = new int[arrayOfString.length];
 //
         for (int i = 0; i<arrayOfString.length; i++)
         {
             integers[i] = Integer.parseInt(arrayOfString[i]);
-
-
         }
 
         // sorting the numbers
@@ -45,18 +45,17 @@ public class Main implements NumberRangeSummarizer {
 
     }
 
-    @Override
     public String summarizeCollection(Collection<Integer> input) {
 
         Integer[] collectedInts;
         collectedInts = input.toArray(new Integer[0]);
-        List<Integer> list = new ArrayList<>();
-        List<Integer> maximums = new ArrayList<>();
-        List<Integer> anomalies = new ArrayList<>();
-        List<Integer> minimums = new ArrayList<>();
+        List list = new ArrayList<Integer>();
+        List maximums = new ArrayList<Integer>();
+        List anomalies = new ArrayList<Integer>();
+        List minimums = new ArrayList<Integer>();
 
      try {
-
+// Sudo code
         for(int i = 0; i<collectedInts.length;i++) {
 
             // "2,3,4,15,7,8,9,10,22"
@@ -105,7 +104,7 @@ public class Main implements NumberRangeSummarizer {
 
             range[i] = minimums.get(i) + "-" + maximums.get(i);
         }
-        System.out.println("The list in asscending order: "+list);
+        System.out.println("The list in ascending order: "+list);
 
         String summarizedCollectn = anomalies + Arrays.toString(range);
 
