@@ -1,67 +1,29 @@
 package com.numberRangeSummarizer;
 
-
-/*mport java.util.List;
-import java.util.Collection;
-import java.util.Arrays;
-import java.util.ArrayList;
-
-
-*//* grouping the numbers into a range when they are sequential.
- *
- *
- * Sample Input: "1,3,6,7,8,12,13,14,15,21,22,23,24,31
- * Result: "1, 3, 6-8, 12-15, 21-24, 31"
- *
- *//*
-public class Main implements NumberRangeSummarizer {
-
-
-    public Collection<Integer> collect(String input) {
-        //Separate the numbers with ","
-        String[] arrayOfString = input.split(",");
-        int[] integers = new int[arrayOfString.length];
-//
-        for (int i = 0; i < arrayOfString.length; i++) {
-            integers[i] = Integer.parseInt(arrayOfString[i]);
-        }
-
-        // sorting the numbers
-
-        Arrays.sort(integers);
-        List<Integer> list = new ArrayList<>();
-
-        for (int i = 0; i < integers.length; i++) {
-            list.add(integers[i]);
-
-        }
-
-
-        return list;
-
-    }*/
-
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 /**
  *
  * TODO : Add class comment
  *
  */
-public class Main implements NumberRangeSummarizer
+public class NumberSummarizerImpl implements NumberRangeSummarizer
 {
     public static void main(String[] args)
     {
-        Main nr = new Main();
+        NumberSummarizerImpl nr = new NumberSummarizerImpl();
         String input = "99,100,101,102,103,104,107,108,109,110,115,188,189,192,20";
-        Collection<Integer> collectinput = (List<Integer>)nr.collect(input);
-        String range = nr.summarizeCollection(collectinput);
-        System.out.println(range);
+        String s = "I I AM AM GOING TO BE IMPACT IMPACT";
+        try {
+            Collection<Integer> collectionInput = (List<Integer>)nr.collect(input);
+            String range = nr.summarizeCollection(collectionInput);
+
+            System.out.println(range);
+        } catch (ClassCastException exc) {
+            System.out.println("Please review the string there might be a character");
+        }
+
+
     }
 
     /**
@@ -107,13 +69,20 @@ public class Main implements NumberRangeSummarizer
     public String summarizeCollection(Collection<Integer> input)
     {
         int count = 0;
+        //hOLD the range
         StringBuilder sb = new StringBuilder();
+
+
+        //collection class created
         ArrayList<Integer> inputList = new ArrayList<Integer>(input);
         int length = inputList.size();
+
+
         int start;
         int next;
         for (int a = 0; a < length; a++)
         {
+            // CATERS FOR THE LAST ELEMENT OF THE LIST
             if (a == length - 1)
             {
                 if(inputList.get(length-2) != inputList.get(length-1))
@@ -122,14 +91,19 @@ public class Main implements NumberRangeSummarizer
                 }
                 break;
             }
-
+        // START IS FIRST ELEMENT
             start = (Integer)inputList.get(a);
+
             next = (Integer)inputList.get(a + 1);
             if (next == start + 1)
             {
                 count++;
                 int lowestBound = start;
+
+                //GENERALLY IF THERE IS A CONSISTENT RANGE IN THE LIST APEND THE BEGINING AND END OF IT ELSE BREAK FROM THE LOOP
+
                 // Loop until the range breaks - where the loop breaks is your upper bound for the current range.
+                // TAKING THE BEGINING OF THE RANGE AND WHERE IT ENDS!!!
                 for (int i = a + 1; ; i++)
                 {
                     start = (Integer)inputList.get(i);
@@ -153,11 +127,14 @@ public class Main implements NumberRangeSummarizer
             }
             else
             {
+                // goes through the the ones with no raNGE
                 sb.append(start + ", ");
             }
         }
+        //CONCATENATION
         String ranges = sb.toString();
         return ranges.substring(0, ranges.length() - 1);
     }
+
 
 }
